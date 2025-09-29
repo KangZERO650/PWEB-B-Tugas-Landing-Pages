@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaHub Surabaya - Temukan Bioskop Terbaik di Kota Pahlawan</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .cinema-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .cinema-type-badge {
+            background: linear-gradient(45deg, #10b981, #06b6d4);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .footer-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(10px);">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="#" style="background: linear-gradient(45deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <img src="images/icon.png" alt="CinemaHub Logo" class="me-2" style="width: 1.5rem; height: 1.5rem; object-fit: contain;">CinemaHub
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cinemas">Bioskop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search">Cari Lokasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white d-flex align-items-center" style="min-height: 100vh; padding-top: 80px;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+                        Temukan Bioskop Terbaik di 
+                        <span class="text-warning">Surabaya</span>
+                    </h1>
+                    <p class="lead mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        Jelajahi pengalaman menonton film terbaik di kota pahlawan. Dari bioskop premium hingga yang ramah keluarga, temukan semuanya di sini.
+                    </p>
+                    <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <a href="#cinemas" class="btn btn-primary-custom btn-lg px-4 py-3 me-3">
+                            <i class="fas fa-search me-2"></i>Cari Bioskop
+                        </a>
+                        <a href="#search" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>Lihat Peta
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <i class="fas fa-film display-1 text-white opacity-25 position-absolute" style="top: -20px; right: 20px;"></i>
+                        <i class="fas fa-video display-1 text-warning opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="search-container rounded-4 p-4 text-center">
+                        <h3 class="mb-3 text-dark fw-semibold">Cari Bioskop di Mall atau Lokasi Spesifik</h3>
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-lg" placeholder="Masukkan nama mall atau lokasi (contoh: Pakuwon Mall)" id="searchInput">
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary-custom btn-lg w-100" onclick="searchCinema()">
+                                    <i class="fas fa-search me-2"></i>Cari
+                                </button>
+                            </div>
+                        </div>
+                        <div id="searchResults" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinema Sections -->
+    <section id="cinemas" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title fw-bold text-dark mb-3">Jaringan Bioskop di Surabaya</h2>
+                <p class="text-muted lead">Pilihan bioskop terbaik dengan fasilitas modern dan pengalaman menonton yang tak terlupakan</p>
+            </div>
+
+            <!-- Cinema XXI Section -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="cinema-type-badge me-3">PREMIUM</div>
+                        <h3 class="fw-bold text-dark mb-0">Cinema XXI</h3>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">Pakuwon Mall XXI</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Pakuwon Mall, Jl. Puncak Indah Lontar
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>8 Studio Premium</small>
+                                <small class="text-muted d-block"><i class="fas fa-crown me-2"></i>Dolby Atmos & 4DX</small>
+                                <small class="text-muted d-block"><i class="fas fa-utensils me-2"></i>Food Court Terintegrasi</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 35.000 - Rp 85.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">Galaxy Mall XXI</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Galaxy Mall Lt. 3, Jl. Dharmahusada Indah
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>6 Studio Modern</small>
+                                <small class="text-muted d-block"><i class="fas fa-volume-up me-2"></i>Digital Sound System</small>
+                                <small class="text-muted d-block"><i class="fas fa-parking me-2"></i>Parkir Luas</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 30.000 - Rp 60.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">Trans Icon Mall XXI</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Trans Icon Mall, Jl. Manyar Kertoarjo
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>7 Studio Eksklusif</small>
+                                <small class="text-muted d-block"><i class="fas fa-star me-2"></i>IMAX Experience</small>
+                                <small class="text-muted d-block"><i class="fas fa-coffee me-2"></i>Premiere Lounge</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 40.000 - Rp 120.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CGV Cinemas Section -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="cinema-type-badge me-3" style="background: linear-gradient(45deg, #dc2626, #ea580c);">INTERNATIONAL</div>
+                        <h3 class="fw-bold text-dark mb-0">CGV Cinemas</h3>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">CGV Maspion Square</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Maspion Square Lt. 4, Jl. Ahmad Yani
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>5 Studio dengan 4DX</small>
+                                <small class="text-muted d-block"><i class="fas fa-gamepad me-2"></i>4DX Motion Seats</small>
+                                <small class="text-muted d-block"><i class="fas fa-wind me-2"></i>Special Effects Theater</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 35.000 - Rp 150.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">CGV Marvell City</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Marvell City Mall Lt. 2, Jl. Ngagel
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>6 Studio Premium</small>
+                                <small class="text-muted d-block"><i class="fas fa-tv me-2"></i>Ultra HD Projection</small>
+                                <small class="text-muted d-block"><i class="fas fa-ice-cream me-2"></i>Gourmet Snack Bar</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 32.000 - Rp 75.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cinepolis Section -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="cinema-type-badge me-3" style="background: linear-gradient(45deg, #7c3aed, #c026d3);">LUXURY</div>
+                        <h3 class="fw-bold text-dark mb-0">Cinépolis</h3>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">Cinépolis CITO</h5>
+                                <span class="badge bg-success">Buka</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                City of Tomorrow, Jl. A. Yani
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>4 Studio VIP</small>
+                                <small class="text-muted d-block"><i class="fas fa-chair me-2"></i>Reclining Leather Seats</small>
+                                <small class="text-muted d-block"><i class="fas fa-concierge-bell me-2"></i>Personal Service</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 45.000 - Rp 200.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card cinema-card card-hover border-0 rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title fw-semibold">Movimax Kaza City</h5>
+                                <span class="badge bg-warning text-dark">Promo</span>
+                            </div>
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Kaza City Mall, Jl. Ir. Soekarno
+                            </p>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><i class="fas fa-couch me-2"></i>3 Studio Family</small>
+                                <small class="text-muted d-block"><i class="fas fa-money-bill me-2"></i>Harga Terjangkau</small>
+                                <small class="text-muted d-block"><i class="fas fa-child me-2"></i>Kids Friendly</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-primary">Rp 20.000 - Rp 40.000</span>
+                                <a href="#" class="btn btn-sm btn-primary-custom">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 hero-gradient text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <div class="display-4 fw-bold mb-2">25+</div>
+                    <h5>Lokasi Bioskop</h5>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="display-4 fw-bold mb-2">150+</div>
+                    <h5>Studio Theater</h5>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="display-4 fw-bold mb-2">500+</div>
+                    <h5>Film per Bulan</h5>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="display-4 fw-bold mb-2">1M+</div>
+                    <h5>Pengunjung Bulanan</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-gradient text-white py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">CinemaHub Surabaya</h5>
+                    <p class="text-light opacity-75">Platform terpercaya untuk menemukan bioskop terbaik di Kota Pahlawan. Nikmati pengalaman menonton yang tak terlupakan.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="fw-semibold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light opacity-75 text-decoration-none">Beranda</a></li>
+                        <li><a href="#cinemas" class="text-light opacity-75 text-decoration-none">Bioskop</a></li>
+                        <li><a href="#search" class="text-light opacity-75 text-decoration-none">Pencarian</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="fw-semibold mb-3">Jaringan Bioskop</h6>
+                    <ul class="list-unstyled">
+                        <li class="text-light opacity-75">Cinema XXI</li>
+                        <li class="text-light opacity-75">CGV Cinemas</li>
+                        <li class="text-light opacity-75">Cinépolis</li>
+                        <li class="text-light opacity-75">Movimax</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="fw-semibold mb-3">Kontak Info</h6>
+                    <div class="text-light opacity-75">
+                        <div class="mb-2"><i class="fas fa-envelope me-2"></i>info@cinemahub-sby.com</div>
+                        <div class="mb-2"><i class="fas fa-phone me-2"></i>+62 31 1234 5678</div>
+                        <div><i class="fas fa-map-marker-alt me-2"></i>Surabaya, Jawa Timur</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="text-center">
+                <p class="mb-0 opacity-75">&copy; 2025 CinemaHub Surabaya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="js/mallData.js" defer></script>
+    <script>
+        // Cinema search functionality
+     
+        function searchCinema() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const searchResults = document.getElementById('searchResults');
+            
+            if (searchInput === '') {
+                searchResults.innerHTML = '<div class="alert alert-warning rounded-3"><i class="fas fa-exclamation-triangle me-2"></i>Masukkan kata kunci pencarian terlebih dahulu</div>';
+                return;
+            }
+            
+            let results = [];
+            
+            // Search through cinema data with fuzzy matching
+            for (let key in cinemaData) {
+                const cinema = cinemaData[key];
+                if (key.includes(searchInput) || 
+                    cinema.name.toLowerCase().includes(searchInput) ||
+                    cinema.location.toLowerCase().includes(searchInput) ||
+                    cinema.type.toLowerCase().includes(searchInput)) {
+                    results.push(cinema);
+                }
+            }
+            
+            // Display search results
+            if (results.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="alert alert-info rounded-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Tidak ada hasil ditemukan untuk "<strong>${searchInput}</strong>". 
+                        <br><small class="text-muted mt-1 d-block">Coba kata kunci: pakuwon, galaxy, maspion, cito, tunjungan</small>
+                    </div>
+                `;
+            } else {
+                let resultHTML = `
+                    <div class="alert alert-success rounded-3 mb-3">
+                        <i class="fas fa-check-circle me-2"></i>
+                        Ditemukan <strong>${results.length}</strong> bioskop untuk pencarian "<strong>${searchInput}</strong>"
+                    </div>
+                    <div class="row">
+                `;
+                
+                results.forEach((cinema, index) => {
+                    resultHTML += `
+                        <div class="col-md-6 mb-3" style="animation: fadeInUp 0.6s ease ${index * 0.1}s both;">
+                            <div class="card cinema-card border-0 rounded-3 h-100 shadow-sm card-hover">
+                                <div class="card-body p-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="card-title fw-semibold mb-1 text-primary">${cinema.name}</h6>
+                                        <span class="badge rounded-pill" style="background: linear-gradient(45deg, #6366f1, #8b5cf6); font-size: 0.7rem;">${cinema.type}</span>
+                                    </div>
+                                    <p class="text-muted small mb-2">
+                                        <i class="fas fa-map-marker-alt me-2 text-danger"></i>${cinema.location}
+                                    </p>
+                                    <div class="mb-3">
+                                        ${cinema.features.map(feature => `
+                                            <small class="text-muted d-block mb-1">
+                                                <i class="fas fa-star me-1 text-warning" style="font-size: 0.7rem;"></i>${feature}
+                                            </small>
+                                        `).join('')}
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="fw-bold text-success small">${cinema.price}</span>
+                                            <br><small class="text-muted">Range harga tiket</small>
+                                        </div>
+                                        <button class="btn btn-primary-custom btn-sm px-3" onclick="showCinemaDetail('${cinema.name}')">
+                                            <i class="fas fa-info-circle me-1"></i>Detail
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                resultHTML += '</div>';
+                searchResults.innerHTML = resultHTML;
+            }
+        }
+        
+        // Show cinema detail function
+        function showCinemaDetail(cinemaName) {
+            // Find the cinema data
+            let selectedCinema = null;
+            for (let key in cinemaData) {
+                if (cinemaData[key].name === cinemaName) {
+                    selectedCinema = cinemaData[key];
+                    break;
+                }
+            }
+            
+            if (selectedCinema) {
+                const modal = `
+                    <div class="modal fade" id="cinemaModal" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content rounded-4">
+                                <div class="modal-header border-0 pb-0">
+                                    <h5 class="modal-title fw-bold text-primary">${selectedCinema.name}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <h6 class="fw-semibold text-dark mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>Lokasi</h6>
+                                                <p class="text-muted">${selectedCinema.location}</p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h6 class="fw-semibold text-dark mb-2"><i class="fas fa-star text-warning me-2"></i>Fasilitas</h6>
+                                                <ul class="list-unstyled">
+                                                    ${selectedCinema.features.map(feature => `<li class="mb-1"><i class="fas fa-check text-success me-2"></i>${feature}</li>`).join('')}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card bg-light border-0 rounded-3">
+                                                <div class="card-body text-center">
+                                                    <div class="badge rounded-pill mb-3" style="background: linear-gradient(45deg, #6366f1, #8b5cf6); font-size: 0.9rem; padding: 0.5rem 1rem;">${selectedCinema.type}</div>
+                                                    <h5 class="fw-bold text-success mb-2">${selectedCinema.price}</h5>
+                                                    <p class="small text-muted mb-3">Range harga tiket</p>
+                                                    <button class="btn btn-primary-custom w-100 mb-2">
+                                                        <i class="fas fa-ticket-alt me-2"></i>Beli Tiket
+                                                    </button>
+                                                    <button class="btn btn-outline-primary w-100" onclick="window.open('${selectedCinema.url}', '_blank')">
+                                                        <i class="fas fa-directions me-2"></i>Petunjuk Arah
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Remove existing modal if any
+                const existingModal = document.getElementById('cinemaModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+                
+                // Add modal to body and show it
+                document.body.insertAdjacentHTML('beforeend', modal);
+                const modalElement = new bootstrap.Modal(document.getElementById('cinemaModal'));
+                modalElement.show();
+            }
+        }
+        
+        // Allow search on Enter key press
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchCinema();
+            }
+        });
+        
+        // Real-time search suggestions
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const value = this.value.toLowerCase().trim();
+            if (value.length >= 2) {
+                // Show suggestions after 2 characters
+                setTimeout(() => {
+                    if (this.value.toLowerCase().trim() === value && value.length >= 2) {
+                        searchCinema();
+                    }
+                }, 500);
+            } else if (value.length === 0) {
+                document.getElementById('searchResults').innerHTML = '';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to navbar
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(30, 41, 59, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            // Hide/show navbar on scroll
+            if (currentScroll > lastScrollTop && currentScroll > 200) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+        
+        // Add loading animation to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS for fade in animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .fade-in-on-scroll {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.8s ease;
+                }
+                
+                .fade-in-on-scroll.visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Intersection Observer for scroll animations
+            const cards = document.querySelectorAll('.card-hover');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.classList.add('fade-in-on-scroll');
+                observer.observe(card);
+            });
+        });
+        
+        // Add typing effect for popular searches
+        const popularSearches = [
+            'pakuwon mall', 
+            'galaxy mall', 
+            'maspion square', 
+            'tunjungan plaza', 
+            'ciputra world',
+            'grand city',
+            'cito mall',
+            'kaza city'
+        ];
+        let currentSearch = 0;
+        
+        function showPopularSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput === document.activeElement || searchInput.value.length > 0) return;
+            
+            searchInput.placeholder = `Coba cari: ${popularSearches[currentSearch]}`;
+            currentSearch = (currentSearch + 1) % popularSearches.length;
+        }
+        
+        // Start the typing effect
+        setInterval(showPopularSearch, 2500);
+        
+        // Counter animation for stats section
+        function animateCounter(element, start, end, duration) {
+            let current = start;
+            const increment = (end - start) / (duration / 16);
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + '+';
+            }, 16);
+        }
+        
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = [
+                        { element: entry.target.querySelector('.display-4'), end: 25 },
+                        { element: entry.target.querySelectorAll('.display-4')[1], end: 150 },
+                        { element: entry.target.querySelectorAll('.display-4')[2], end: 500 },
+                        { element: entry.target.querySelectorAll('.display-4')[3], end: 1000000 }
+                    ];
+                    
+                    counters.forEach(counter => {
+                        if (counter.element && !counter.element.classList.contains('animated')) {
+                            counter.element.classList.add('animated');
+                            if (counter.end === 1000000) {
+                                counter.element.textContent = '1M+';
+                            } else {
+                                animateCounter(counter.element, 0, counter.end, 2000);
+                            }
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe stats section
+        const statsSection = document.querySelector('.hero-gradient:not(:first-child)');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // Add click tracking for cinema cards
+        document.addEventListener('click', function(e) {
+            const cinemaCard = e.target.closest('.cinema-card');
+            if (cinemaCard && !e.target.closest('button') && !e.target.closest('a')) {
+                const cinemaName = cinemaCard.querySelector('.card-title').textContent;
+                showCinemaDetail(cinemaName);
+            }
+        });
+        
+        // Initialize tooltips if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive features
+            const allCards = document.querySelectorAll('.cinema-card');
+            allCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
