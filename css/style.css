@@ -1,0 +1,79 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cinema-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background: linear-gradient(45deg, #4f46e5, #7c3aed);
+    transform: translateY(-2px);
+}
+
+#text-bioskop {
+    color: #1f2937;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#text-bioskop::before {
+    content: 'Bioskop';
+    position: absolute;
+    top: 0.04rem;
+    left: 0rem;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+    transition: clip-path 0.4s ease;
+    pointer-events: none;
+    user-select: none;
+    --radius: 35%;
+}
+
+#text-bioskop:hover::before {
+    clip-path: circle(var(--radius) at var(--x, 50%) var(--y, 50%));
+}
+
+.cinema-type-badge {
+    background: linear-gradient(45deg, #10b981, #06b6d4);
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.footer-gradient {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
