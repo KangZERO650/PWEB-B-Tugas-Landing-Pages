@@ -458,8 +458,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="js/mallData.js" defer></script>
     <script>
-        // Cinema search functionality
-     
+        // Cinema search function
         function searchCinema() {
             const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
             const searchResults = document.getElementById('searchResults');
@@ -471,7 +470,6 @@
             
             let results = [];
             
-            // Search through cinema data with fuzzy matching
             for (let key in cinemaData) {
                 const cinema = cinemaData[key];
                 if (key.includes(searchInput) || 
@@ -537,10 +535,9 @@
                 searchResults.innerHTML = resultHTML;
             }
         }
-        
-        // Show cinema detail function
+
+        // Show Detail func
         function showCinemaDetail(cinemaName) {
-            // Find the cinema data
             let selectedCinema = null;
             for (let key in cinemaData) {
                 if (cinemaData[key].name === cinemaName) {
@@ -594,20 +591,17 @@
                     </div>
                 `;
                 
-                // Remove existing modal if any
                 const existingModal = document.getElementById('cinemaModal');
                 if (existingModal) {
                     existingModal.remove();
                 }
                 
-                // Add modal to body and show it
                 document.body.insertAdjacentHTML('beforeend', modal);
                 const modalElement = new bootstrap.Modal(document.getElementById('cinemaModal'));
                 modalElement.show();
             }
         }
         
-        // Allow search on Enter key press
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -615,11 +609,9 @@
             }
         });
         
-        // Real-time search suggestions
         document.getElementById('searchInput').addEventListener('input', function() {
             const value = this.value.toLowerCase().trim();
             if (value.length >= 2) {
-                // Show suggestions after 2 characters
                 setTimeout(() => {
                     if (this.value.toLowerCase().trim() === value && value.length >= 2) {
                         searchCinema();
@@ -630,7 +622,6 @@
             }
         });
         
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -647,7 +638,6 @@
             });
         });
         
-        // Add scroll effect to navbar
         let lastScrollTop = 0;
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -661,7 +651,6 @@
                 navbar.style.boxShadow = 'none';
             }
             
-            // Hide/show navbar on scroll
             if (currentScroll > lastScrollTop && currentScroll > 200) {
                 navbar.style.transform = 'translateY(-100%)';
             } else {
@@ -671,9 +660,7 @@
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
         
-        // Add loading animation to cards
         document.addEventListener('DOMContentLoaded', function() {
-            // Add CSS for fade in animation
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fadeInUp {
@@ -700,7 +687,6 @@
             `;
             document.head.appendChild(style);
             
-            // Intersection Observer for scroll animations
             const cards = document.querySelectorAll('.card-hover');
             
             const observer = new IntersectionObserver((entries) => {
@@ -719,7 +705,6 @@
             });
         });
         
-        // Add typing effect for popular searches
         const popularSearches = [
             'pakuwon mall', 
             'galaxy mall', 
@@ -740,10 +725,9 @@
             currentSearch = (currentSearch + 1) % popularSearches.length;
         }
         
-        // Start the typing effect
         setInterval(showPopularSearch, 2500);
         
-        // Counter animation for stats section
+        // counter animation
         function animateCounter(element, start, end, duration) {
             let current = start;
             const increment = (end - start) / (duration / 16);
@@ -758,7 +742,6 @@
             }, 16);
         }
         
-        // Trigger counter animation when stats section is visible
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -783,13 +766,11 @@
             });
         }, { threshold: 0.5 });
         
-        // Observe stats section
         const statsSection = document.querySelector('.hero-gradient:not(:first-child)');
         if (statsSection) {
             statsObserver.observe(statsSection);
         }
         
-        // Add click tracking for cinema cards
         document.addEventListener('click', function(e) {
             const cinemaCard = e.target.closest('.cinema-card');
             if (cinemaCard && !e.target.closest('button') && !e.target.closest('a')) {
@@ -798,9 +779,7 @@
             }
         });
         
-        // Initialize tooltips if needed
         document.addEventListener('DOMContentLoaded', function() {
-            // Add some interactive features
             const allCards = document.querySelectorAll('.cinema-card');
             allCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
@@ -813,4 +792,5 @@
             });
         });
     </script>
+
 </body>
